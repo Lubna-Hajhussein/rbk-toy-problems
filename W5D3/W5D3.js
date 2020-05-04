@@ -37,3 +37,8 @@ orderAVegetarianDish(staffA); //true
 */
 
 // your answer is here 
+function orderAVegetarianDish ( data ) {
+  return data.reduce ( function ( isVegetarian, person ) {
+    return isVegetarian || ( person.mealPreferences === 'vegetarian' )
+  } , false )
+}
