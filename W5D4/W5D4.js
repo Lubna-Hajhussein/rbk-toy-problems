@@ -53,9 +53,21 @@ shoppingSummary(shoppingList); //"I got 3 items at $99.73"
 
 
 
+*/
+//returns a string with the number of items you bought, and the total amount you spent.
+//-->your only limit is your budget.($100)
+function shoppingSummary(list){
+  var total=0
+  var newList = list.filter(function(eachItem){
+    total+=eachItem.price
+    if(total<=100){return eachItem}
+  })
+  var Total = newList.reduce(function(price,eachItem){
+        return price + eachItem.price
+  },0)
+return `I got ${newList.length} item at $${Total.toFixed(2)}`
+}
 /*
-
-
 Exercise 2
 Suppose that you wanted to take out the most expensive item on your shopping list. 
 Write a function called removeMostExpensive 
@@ -98,3 +110,14 @@ Would return a new array with the following elements:
 
 //your answer is here
 
+function removeMostExpensive(list){
+  var expensive= list[0]
+  list.forEach(function(eachItem){
+    if(eachItem.price>expensive.price){
+      expensive=eachItem
+    }
+  })
+  
+  list.splice(list.indexOf(expensive),1)
+  return list
+}
